@@ -1,0 +1,138 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+
+
+
+public:
+// Member functions definitions including constructor
+
+Car(string make,string model,string color,int year,int Mileage,int VIN) 
+{ 
+    make=make;
+    model=model;
+    color=color;
+    year=year;
+    Mileage=Mileage;
+    VIN=VIN;
+     
+    
+}
+//Getters Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }
+        
+        
+    }
+
+     string getColor() {
+        return color;
+        
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+};
+
+// Main function for the program
+int main() {
+
+  string make = "Porsche";
+    string model=  "911";
+    string color="Silver";
+    int year= 2005;
+    int Mileage=18990 ;
+    int VIN= 1237362 ;
+
+  Car car1(make,model,color,year, Mileage, VIN);
+
+
+ 
+// set Car Attributes again for Assignment!
+   car1.setVin(VIN);
+   car1.setMake(make);
+   car1.setModel(model); 
+   car1.setYear(year); 
+   car1.setMileage(Mileage); 
+   car1.setColor(color);  
+
+   cout << "Vin Number : " << car1.getVin() <<endl;
+ 
+   cout << "Make: " << car1.getMake() <<endl;
+
+   cout << "Model: " << car1.getModel() <<endl;
+
+   cout << "Year: " << car1.getYear() <<endl;
+
+   cout << "Mileage : " << car1.getMileage() <<endl;
+ 
+   cout << "Color: " << car1.getColor() <<endl;
+
+  return 0;
+}

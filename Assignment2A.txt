@@ -1,0 +1,45 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+void welcomeFunction(int & numberOfShip)
+{
+   // local variable declaration
+   cout <<"Welcome to the Forsythtech Company"<<endl;
+   cout << "Type the number of shipments this week?: "; // Type a quantity and press enter
+   cin >> numberOfShip ; // Get user input from the keyboard
+   
+}
+
+double SetupShipments(int numOfShips)
+{
+  double total=0;
+  int desktops=0;
+  int laptops=0;
+
+   for (int i = 1; i <= numOfShips; i++) {
+  cout << "Type the number of Desktops purchased in week "<<i<<": ";
+  cin >> desktops ; // Get user input from the keyboard
+  total+= 200 * desktops;
+
+  cout << "Type the number of Laptops purchased in week "<<i<<": ";
+  cin >> laptops ; // Get user input from the keyboard
+  total+= 275 * laptops;
+   
+  }   
+   return  total;
+}
+
+
+int main() {
+   int numberOfShipments=0;
+   double totalBill=0;
+
+   welcomeFunction(numberOfShipments);
+
+   totalBill+=SetupShipments(numberOfShipments);
+  cout <<"The Total bill is $"<< totalBill<<endl;
+  return 0;
+}
+

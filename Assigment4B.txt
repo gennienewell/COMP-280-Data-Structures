@@ -1,0 +1,148 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+
+
+
+public:
+// Member functions definitions including constructor
+
+Car(string ma,string mo,string co,int ye,int Mi,int VN) 
+{ 
+    make=ma;
+    model=mo;
+    color=co;
+    year=ye;
+    Mileage=Mi;
+    VIN=VN;
+     
+    
+}
+//Getters Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }
+        
+        
+    }
+
+     string getColor() {
+        return color;
+        
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+};
+
+// Main function for the program
+int main() {
+ 
+Car car1("Porsche","911","Silver",2005,18990,1237362);
+Car car2("Ford","Mustang","Red",2007,49842,7337372);
+Car car3("Chevrolet","Beretta","Black",1989,90332,2873644);
+Car car4("Ford","Focus","White",2008,150,9236498);
+Car car5("Voltzwagon","Jetta","Black",2006,28002,4673992);
+Car car6("Rolls Royce","Ghost","Silver",2005,10000,9292983);
+Car car7("Mazda","626","Blue",2002,84754,7364646);
+Car car8("Toyota","Camry","Red",2004,50332,2133737);
+Car car9("Honda","civic","Silver",2006,190,3337362);
+
+Car carslist[] = {car1,car2,car3,car4,car5,car6,car7,car8,car9};
+
+for (int i = 0; i < 9; i++) {
+  cout<<i+1<<". "<<carslist[i].getMake()<<"  "<<carslist[i].getModel()<<"  "<<carslist[i].getColor()<<"  "<<carslist[i].getYear()<<"  "<<carslist[i].getMileage()<<"  "<<carslist[i].getVin()<<"  "<<endl;
+}
+
+int carChoise;
+int answer1;
+int answer2;
+
+cout << "Witch car in the array do you want to change in Array: Select car 1-9  ";
+cin >> carChoise ; // Get user input from the keyboard
+cin.ignore();
+
+cout << "Type New Year?: "; // Type a description and press enter
+cin>>answer1; // Get user input from the keyboard
+cin.ignore();
+
+cout<<""<<endl;
+cout << "Type New Milage: "; // Type a description and press enter
+cin>>answer2; // Get user input from the keyboard
+
+cout<<endl;
+  carslist[carChoise-1].setYear(answer1);
+  carslist[carChoise-1].setMileage(answer2);
+
+
+
+for (int i = 0; i < 9; i++) {
+  cout<<i+1<<". "<<carslist[i].getMake()<<"  "<<carslist[i].getModel()<<"  "<<carslist[i].getColor()<<"  "<<carslist[i].getYear()<<"  "<<carslist[i].getMileage()<<"  "<<carslist[i].getVin()<<"  "<<endl;
+}
+  return 0;
+}

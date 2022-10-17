@@ -1,0 +1,290 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+
+
+
+public:
+// Member functions definitions including constructor
+Car(string ma,string mo,string co,int ye,int Mi,int VN) 
+{ 
+    make=ma;
+    model=mo;
+    color=co;
+    year=ye;
+    Mileage=Mi;
+    VIN=VN;
+     
+    
+}
+
+//Added a default constructor
+Car() {};
+
+//Getters Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }
+        
+        
+    }
+
+     string getColor() {
+        return color;
+        
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+};
+
+
+class carList
+{
+private:
+        struct ListNode
+        {
+          Car Value;
+          struct ListNode *next;
+        };
+
+        ListNode *head;
+public:
+    
+      carList()
+      {head =  nullptr;}
+
+     // ~carList();
+
+    
+    void appendNode(Car);
+    void insertNode(Car);
+    void deleteNode(Car);
+    void displayList();
+      
+};
+
+void carList::appendNode(Car c)
+      {
+        ListNode *newNode;
+        ListNode *nodePtr;
+
+        newNode = new ListNode;// Line i need help on
+        newNode->Value = c;
+        newNode->next = nullptr;
+
+        if (!head)
+          head = newNode;
+          else
+          {
+            nodePtr = head;
+
+            while(nodePtr->next)
+            nodePtr = nodePtr->next;
+            nodePtr->next= nodePtr;
+          }
+      }
+
+
+void carList::insertNode(Car c)
+      {
+        ListNode *newNode;
+        ListNode *nodePtr;
+        ListNode *previousNode = nullptr;
+
+        newNode = new ListNode;// Line i need help on
+        newNode->Value = c;
+        
+
+        if (!head)
+        {
+          head = newNode;
+          newNode->next = nullptr;
+        }
+          else
+          {
+            nodePtr = head;
+            previousNode = nullptr;
+            while (nodePtr != nullptr)
+            {
+              previousNode =nodePtr;
+              nodePtr = nodePtr->next;
+            }
+
+            if (previousNode == nullptr)
+            {
+              head = newNode;
+              newNode->next = nodePtr;
+            }
+            else 
+            {
+              previousNode->next = newNode;
+              newNode->next = nodePtr;
+            }
+          }
+      }
+
+void carList::deleteNode(Car c)
+{
+  ListNode *nodePtr;
+  ListNode *previousNode;
+
+  if(!head)
+  return;
+
+  if(head->Value.getVin() == c.getVin())
+  {
+    nodePtr = head->next;
+    delete head;
+    head= nodePtr;
+  }
+  else
+  {
+    nodePtr = head;
+    while(nodePtr != nullptr && nodePtr ->Value.getVin() != c.getVin())
+    {
+      previousNode = nodePtr;
+      nodePtr= nodePtr->next;
+    }
+    if(nodePtr)
+    {
+      previousNode->next = nodePtr->next;
+      delete nodePtr;
+    }
+  }
+}
+
+void carList::displayList()
+{
+  ListNode *nodePtr;
+  nodePtr = head;
+  while (nodePtr !=nullptr)
+  {
+    cout<<nodePtr->Value.getMake()<<" "<<nodePtr->Value.getModel()<<" "<<nodePtr->Value.getColor()<<" "<<nodePtr->Value.getYear()<<" "<<nodePtr->Value.getMileage()<<" "<<nodePtr->Value.getVin()<<endl;
+    nodePtr = nodePtr->next;
+  }
+}
+// Main function for the program
+int main() {
+Car car1("Porsche","911","Silver",2005,18990,1237362);
+Car car2("Ford","Mustang","Red",2007,49842,7337372);
+Car car3("Chevrolet","Beretta","Black",1989,90332,2873644);
+
+carList list;
+
+list.insertNode(car1);
+list.insertNode(car2);
+list.insertNode(car3);
+
+
+
+list.displayList();
+
+string answer1;
+string answer2;
+string answer3;
+int answer4;
+int answer5;
+int answer6;
+
+cout<<"Enter Car Details!"<<endl;
+cout << "Type New Make?: "; // Type a description and press enter
+cin>>answer1; // Get user input from the keyboard
+cin.ignore();
+
+cout<<""<<endl;
+cout << "Type New Model: "; // Type a description and press enter
+cin>>answer2; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New color: "; // Type a description and press enter
+cin>>answer3; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New Year: "; // Type a description and press enter
+cin>>answer4; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New Milage: "; // Type a description and press enter
+cin>>answer5; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New Vin: "; // Type a description and press enter
+cin>>answer6; // Get user input from the keyboard
+
+Car car4(answer1,answer2,answer3,answer4,answer5,answer6);
+list.insertNode(car4);
+
+list.displayList();
+
+list.deleteNode(car4);
+
+cout<<endl;
+cout<<"After Node Deleted"<<endl;
+list.displayList();
+}

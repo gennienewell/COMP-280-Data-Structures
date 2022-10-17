@@ -1,0 +1,63 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+
+int main() {
+   struct Carinfo
+   {
+    string make;
+    string model;
+    string color;
+    int year;
+    int Mileage;
+    int VIN ;
+   };
+
+Carinfo car1 = {"Porsche","911","Silver",2005,18990,1237362};
+Carinfo car2 = {"Ford","Mustang","Red",2007,49842,7337372};
+Carinfo car3 = {"Chevrolet","Beretta","Black",1989,90332,2873644};
+Carinfo car4 = {"Ford","Focus","White",2008,150,9236498};
+Carinfo car5 = {"Voltzwagon","Jetta","Black",2006,28002,4673992};
+Carinfo car6 = {"Rolls Royce","Ghost","Silver",2005,10000,9292983};
+Carinfo car7 = {"Mazda","626","Blue",2002,84754,7364646};
+Carinfo car8 = {"Toyota","Camry","Red",2004,50332,2133737};
+Carinfo car9 = {"Honda","civic","Silver",2006,190,3337362};
+
+Carinfo carslist[] = {car1,car2,car3,car4,car5,car6,car7,car8,car9};
+
+for (int i = 0; i < 9; i++) {
+  cout<<i+1<<carslist[i].make<<"  "<<carslist[i].model<<"  "<<carslist[i].color<<"  "<<carslist[i].year<<"  "<<carslist[i].Mileage<<"  "<<carslist[i].VIN<<"  "<<endl;
+}
+
+
+int carChoise;
+int answer1;
+int answer2;
+
+cout << "Witch car in the array do you want to change in Array: Select car 1-9  ";
+cin >> carChoise ; // Get user input from the keyboard
+cin.ignore();
+
+cout << "Type New Year?: "; // Type a description and press enter
+cin>>answer1; // Get user input from the keyboard
+cin.ignore();
+
+cout<<""<<endl;
+cout << "Type New Milage: "; // Type a description and press enter
+cin>>answer2; // Get user input from the keyboard
+
+cout<<endl;
+  carslist[carChoise-1].year = answer1;
+  carslist[carChoise-1].Mileage = answer2;
+
+  for (int i = 0; i < 9; i++) {
+  cout<<carslist[i].make<<"  "<<carslist[i].model<<"  "<<carslist[i].color<<"  "<<carslist[i].year<<"  "<<carslist[i].Mileage<<"  "<<carslist[i].VIN<<"  "<<endl;
+}
+}
+
+ 
+
+
+

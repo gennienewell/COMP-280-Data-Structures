@@ -1,0 +1,228 @@
+#include <iostream>
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+
+class Bill{
+  
+protected:
+        string customerName;
+        int customerNumber;
+        
+public:
+// Member functions definitions including constructor
+Bill(){}
+Bill(string i,int x){
+      customerName=i;
+      customerNumber=x; 
+}
+//Getters and Setters
+    int getCustomerNumber() {
+        return customerNumber;
+    }
+
+    void setCustomerNumber(int a) {
+        customerNumber = a;
+        
+    }
+
+     string getCustomerName() {
+        return customerName;
+    }
+
+     void setCustomerName(int b) {
+        customerNumber = b;
+        
+    }
+
+    virtual void printBill(){}
+}; 
+
+
+//CarPurchaseBill Class
+class CarPurchaseBill : public Bill{
+  
+private:
+        int VIN;
+        string model;
+        string color;
+        int year;
+        double price;       
+public:
+// Member functions definitions including constructor
+CarPurchaseBill():Bill(){}
+CarPurchaseBill(string i,int x,int  va,string mo,string co,int ye, double pr) :
+Bill(i,x)
+{ 
+    VIN=va;
+    model=mo;
+    color=co;
+    year=ye;
+    price=pr;
+}
+
+//Getters and Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+     double getPrice() {
+        return price;
+    }
+
+    void setPrice(int a) {
+        price = a;
+        
+    }
+
+     string getColor() {
+        return color;
+    }
+
+     void setColor(int b) {
+        color = b;
+        
+    }
+
+virtual void printBill(){
+cout<<endl;
+cout<<"Car Purchased Bill! Vin: "<<getVin()<<" Model: "<<getModel()<<" Color: "<<getColor()<<"Year: "<<getYear()
+<<" Price: "<<getPrice()<<" Customer Name: "<<getCustomerName()<<" Customer Number: "<<getCustomerNumber()<<endl;
+    }
+}; 
+
+
+// CarRepairBill Class
+class CarRepairBill : public Bill{
+  
+private:
+        int VIN;
+        string model;
+        string color;
+        int year;
+        double partCost;
+        double laborCost;      
+public:
+// Member functions definitions including constructor
+CarRepairBill ():Bill(){}
+CarRepairBill (string i,int x,int  va,string mo,string co,int ye, double pc,double lc) :
+Bill(i,x)
+{ 
+    VIN=va;
+    model=mo;
+    color=co;
+    year=ye;
+    partCost=pc;
+    laborCost=lc;
+}
+
+//Getters and Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+     double getPartCost() {
+        return partCost;
+    }
+
+    void setPartCost(int a) {
+        partCost = a;
+        
+    }
+
+     double getLaborCost() {
+        return laborCost;
+    }
+
+    void setLaborCost(int a) {
+        laborCost = a;
+        
+    }
+
+     string getColor() {
+        return color;
+    }
+
+     void setColor(int b) {
+        color = b;
+        
+    }
+
+    virtual void printBill(){
+cout<<endl;
+cout<<"Car Repair Bill! Vin: "<<getVin()<<" Model: "<<getModel()<<" Color: "<<getColor()<<"Year: "<<getYear()
+<<" Total: "<<getPartCost()+getLaborCost()<<" Customer Name: "<<getCustomerName()<<" Customer Number: "<<getCustomerNumber()<<endl;
+    }
+}; 
+
+
+
+int main() {
+CarRepairBill car1("Craig",75,123456,"F-150","Red",1980, 300,100);
+CarPurchaseBill car2("David",76,654321,"Stingray","Black",1990, 200);
+
+Bill * ptrCar1 = &car1;
+Bill * ptrCar2 = &car2;
+
+Bill *carslist[] = {ptrCar1,ptrCar2};
+
+for (int i = 0; i < 2; i++) {
+  carslist[i]->printBill();
+  }
+
+
+return 0;
+}

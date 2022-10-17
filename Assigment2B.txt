@@ -1,0 +1,61 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+void TotalNumber(int salesQuantities[5]);
+
+void TotalNumber(int Quant[5])
+{
+  cout<<endl;
+  double total = 0;
+    for (int i = 0; i <= 4; i++) {   
+      total += Quant[i];
+      
+   }
+   cout<<"Total of Elements in the  Qanitiy Array are: "<< total<<endl;
+}
+
+int main() {
+   int salesQuantities[5]= {1, 2, 3, 4, 5};
+   double prices[5]= {10, 20, 30, 40, 50};
+
+
+  cout <<"Quantity  Prices"<<endl;
+   for (int i = 0; i < sizeof(prices)/sizeof(prices[0]); i++) {   
+     cout << salesQuantities[i]<<"           "<< prices[i]<<endl;
+   }
+  cout<<endl;
+
+   cout << "Type in a number to change in the 3rd position in the PriceArray: ";
+  cin >> prices[2] ; // Get user input from the keyboard
+
+  cout<<endl;
+  cout << "Type in a number to change in the 4rd poosition in the Qantites Array: ";
+  cin >> salesQuantities[3] ; // Get user input from the keyboard
+  
+  cout<<endl;
+  cout <<"Quantity  Prices"<<endl;
+   for (int i = 0; i < sizeof(prices)/sizeof(prices[0]); i++) {   
+     cout << salesQuantities[i]<<"           "<< prices[i]<<endl;
+   }
+
+   TotalNumber(salesQuantities);
+
+    
+    int ArrayTotal = 0;
+    int scores[2][4] = {{1,2,3,4},
+                        {5,6,7,8}};
+    cout<<endl;
+   cout<< "List of Final Scores";
+    for (int i = 0; i < 2; i++) { 
+      for (int j = 0; j < 4; j++) { 
+          cout<< ", "<<scores[i][j];
+          ArrayTotal += scores[i][j];
+          
+      }
+      }
+        cout<<endl;
+      cout<< "The Total Scores for both teams are: "<<ArrayTotal;
+  return 0;
+}
+

@@ -1,0 +1,167 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+        double ShipmentPrice;
+public:
+// Member functions definitions including constructor
+Car(){}
+Car(string ma,string mo,string co,int ye,int Mi,int VN, double shp) 
+{ 
+    make=ma;
+    model=mo;
+    color=co;
+    year=ye;
+    Mileage=Mi;
+    VIN=VN;
+    ShipmentPrice=shp;  
+}
+//Getters and Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }     
+    }
+
+     string getColor() {
+        return color;    
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+double getShipmentPrice() {
+        return ShipmentPrice;    
+    }
+
+    void setShipmentPrice(double p) {
+        ShipmentPrice = p;
+    }
+Car operator+(Car c){
+  Car newCar;
+  newCar = *this;
+  newCar.ShipmentPrice = ShipmentPrice + c.ShipmentPrice;
+  return (newCar);
+}
+
+Car operator-(Car b){
+  Car newCar;
+  newCar = *this;
+  newCar.ShipmentPrice = ShipmentPrice - b.ShipmentPrice;
+  return (newCar);
+}
+
+Car operator++(){
+ ShipmentPrice += 1000;
+ return *this;
+}
+
+Car operator--(){
+  ShipmentPrice -= 1000;
+ return *this;
+}
+
+};
+
+
+// Main function for the program
+int main() {
+//Two Car Objects
+Car car1("Porsche","911","Silver",2005,18990,1237362,0);
+Car car2("Ford","Mustang","Red",2007,49842,7337372,0);
+Car car3("Chevrolet","Beretta","Black",1989,90332,2873644,0);
+Car car4("Ford","Focus","White",2008,150,9236498,0);
+Car car5("Voltzwagon","Jetta","Black",2006,28002,4673992,0);
+Car car6("Rolls Royce","Ghost","Silver",2005,10000,9292983,0);
+Car car7("Mazda","626","Blue",2002,84754,7364646,0);
+Car car8("Toyota","Camry","Red",2004,50332,2133737,0);
+Car car9("Honda","civic","Silver",2006,190,3337362,0);
+
+Car carslist[] = {car1,car2,car3,car4,car5,car6,car7,car8,car9};
+
+//Set Shipments to 5000
+for (int i = 0; i < 9; i++) {
+  carslist[i].setShipmentPrice(5000);
+}
+//Add 1000 to  Rolls Royce Shipment. 
+++carslist[5];
+
+//Subtrcat 1000 to  Ford Shipment. 
+--carslist[3];
+
+for (int i = 0; i < 9; i++) {
+  cout<<i+1<<". "<<carslist[i].getMake()<<"  "<<carslist[i].getModel()<<"  "<<carslist[i].getColor()<<"  "<<carslist[i].getYear()<<"  "<<carslist[i].getMileage()<<"  "<<carslist[i].getVin()<<"  "<<carslist[i].getShipmentPrice()<<endl;
+}
+
+Car TwoCarOrder;
+TwoCarOrder.setShipmentPrice(0);
+
+TwoCarOrder = TwoCarOrder + carslist[0];
+TwoCarOrder = TwoCarOrder + carslist[1];
+
+cout<<endl;
+cout<<"The TwoCarOrder Shippment price is "<<TwoCarOrder.getShipmentPrice()<<endl;
+return 0;
+}

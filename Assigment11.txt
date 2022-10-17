@@ -1,0 +1,274 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+
+
+
+public:
+// Member functions definitions including constructor
+Car(string ma,string mo,string co,int ye,int Mi,int VN) 
+{ 
+    make=ma;
+    model=mo;
+    color=co;
+    year=ye;
+    Mileage=Mi;
+    VIN=VN;
+     
+    
+}
+
+//Added a default constructor
+Car() {};
+
+//Getters Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }
+        
+        
+    }
+
+     string getColor() {
+        return color;
+        
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+};
+
+class dynQueue
+{
+private:
+        struct QNode
+        {
+          Car Value;
+          struct QNode * next;
+        };
+
+        QNode * front;
+        QNode * rear;
+        
+        
+public:
+    
+      dynQueue()
+      {
+      front = nullptr;
+      rear = nullptr;
+      numItems = 0;
+      }
+
+    int numItems;
+    void enqueue(Car);
+    void dequeue(Car &c);
+    bool isEmpty();
+    bool isFull();
+    void displayList();
+    void displayListRev();
+    void Clear();
+};
+
+void dynQueue::enqueue(Car c)
+{
+  QNode * newNode = nullptr;
+  newNode = new QNode;
+  newNode->Value = c;
+  newNode->next = nullptr;
+
+  if(isEmpty())
+  {
+    front =  newNode;
+    rear =  newNode;
+  }
+  else
+  {
+    rear->next = newNode;
+    rear = newNode;
+  }
+  numItems++;
+}
+
+void dynQueue::dequeue(Car & c)
+{
+  QNode *temp = nullptr;
+
+  if(isEmpty())
+  {
+    cout<<"Queue is Empty!"<<endl;
+  }
+  else
+  {
+    c = front->Value;
+    temp = front;
+    front = front->next;
+    delete temp;
+    numItems--;
+
+  }
+}
+
+bool dynQueue::isEmpty()
+{
+  bool status;
+  if(numItems > 0)
+    status = false;
+  else
+    status = true;
+  return status;
+}
+
+void dynQueue::displayList()
+{
+  QNode *nodePtr;
+  nodePtr = front;
+  while (nodePtr !=nullptr)
+  {
+    cout<<nodePtr->Value.getMake()<<" "<<nodePtr->Value.getModel()<<" "<<nodePtr->Value.getColor()<<" "<<nodePtr->Value.getYear()<<" "<<nodePtr->Value.getMileage()<<" "<<nodePtr->Value.getVin()<<endl;
+    nodePtr = nodePtr->next;
+  }
+}
+
+
+
+void dynQueue::Clear()
+{
+  Car value;
+  while(!isEmpty())
+  dequeue(value);
+  
+}
+
+
+int main() {
+Car car1("Porsche","911","Silver",2005,18990,1237362);
+Car car2("Ford","Mustang","Red",2007,49842,7337372);
+Car car3("Chevrolet","Beretta","Black",1989,90332,2873644);
+
+dynQueue q;
+
+q.enqueue(car1);
+q.enqueue(car2);
+q.enqueue(car3);
+
+q.displayList();
+cout<<endl;
+cout<<"The size of the Queue is "<<q.numItems<<"!"<<endl;
+
+string answer1;
+string answer2;
+string answer3;
+int answer4;
+int answer5;
+int answer6;
+
+cout<<endl;
+cout<<"Enter Car Details!"<<endl;
+cout << "Type New Make?: "; // Type a description and press enter
+cin>>answer1; // Get user input from the keyboard
+cin.ignore();
+
+cout<<""<<endl;
+cout << "Type New Model: "; // Type a description and press enter
+cin>>answer2; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New color: "; // Type a description and press enter
+cin>>answer3; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New Year: "; // Type a description and press enter
+cin>>answer4; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New Milage: "; // Type a description and press enter
+cin>>answer5; // Get user input from the keyboard
+
+cout<<""<<endl;
+cout << "Type New Vin: "; // Type a description and press enter
+cin>>answer6; // Get user input from the keyboard
+
+Car car4(answer1,answer2,answer3,answer4,answer5,answer6);
+q.enqueue(car4);
+
+cout<<endl;
+q.displayList();
+
+cout<<endl;
+
+
+cout<<"After Cars Sold!"<<endl;
+q.dequeue(car1);
+q.dequeue(car2);
+q.displayList();
+
+cout<<endl;
+
+
+}

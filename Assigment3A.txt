@@ -1,0 +1,91 @@
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+
+int main() {
+   string Make []= {"Porsche","Ford","Chevrolet",
+   "Ford ","Voltzwagon","Rolls Royce","Mazda","Toyota","Honda"};
+
+   string Model[]= {"911","Mustang","Beretta","Focus",
+   "Jetta","Ghost","626","Camry","Accord"};
+
+   string color[]= {"silver","red","black",
+   "white","black","silver","blue","red","white"};
+
+   int year []= {2005,2007,1989,
+   2008,2006,2005,2002,2004,2000};
+
+   int Mileage[]= {18990 ,49842,90332,
+   150,28002,10000,84754 ,50332,1526};
+
+   int VIN []= {1237362 ,7337372,2873644,
+   9236498,4673992,9292983 ,7364646,2133737,253658};
+
+   cout <<"Make Model Color Year Mileage VIN" <<endl;
+
+   // Set Pointers
+  string *strPtrMake = Make;
+  string *strPtrModel = Model;
+  string *strPtrColor = color;
+  int *strPtrYear = year;
+  int *strPtrMileage = Mileage;
+  int *strPtrVin = VIN;
+
+  string *strPtrMakeCopy = strPtrMake ;
+  string *strPtrModelCopy = strPtrModel;
+  string *strPtrColorCopy = strPtrColor;
+  int *strPtrYearCopy = strPtrYear;
+  int *strPtrMileageCopy = strPtrMileage;
+  int *strPtrVinCopy = strPtrVin;
+
+   for (int i = 0; i < 9; i++) {   
+     cout<< i+1<< *strPtrMakeCopy<<"  "<< *strPtrModelCopy<<"  "<<*strPtrColorCopy<<"  "<<*strPtrYearCopy<<"  "<<*strPtrMileageCopy<<"  "<<*strPtrVinCopy<<endl;
+     strPtrMakeCopy++;
+  strPtrModelCopy++;
+  strPtrColorCopy++;
+  strPtrYearCopy++;
+  strPtrMileageCopy++;
+  strPtrVinCopy++;
+   }
+
+strPtrMakeCopy = strPtrMake ;
+  strPtrModelCopy = strPtrModel;
+  strPtrColorCopy = strPtrColor;
+  strPtrYearCopy = strPtrYear;
+  strPtrMileageCopy = strPtrMileage;
+ strPtrVinCopy = strPtrVin;
+
+  // ASk user for input
+  int answer1 = 0;
+  string answer2 = "";
+  string answer3 = "";
+  cout<<endl;
+
+
+  cout << "Enter a Car you wish to change? 1-9: ";
+  cin>>answer1 ; // Get user input from the keyboard
+  cin.ignore();
+
+ 
+   cout << "What New Color do you wish to Change about the car?: Type Color";
+  getline(cin, answer3) ; // Get user input from the keyboard
+  
+      strPtrColor[answer1-1] = answer3;
+     
+  
+
+   for (int i = 0; i < 9; i++) {   
+     cout<< i+1<< *strPtrMakeCopy<<"  "<< *strPtrModelCopy<<"  "<<*strPtrColorCopy<<"  "<<*strPtrYearCopy<<"  "<<*strPtrMileageCopy<<"  "<<*strPtrVinCopy<<endl;
+     strPtrMakeCopy++;
+  strPtrModelCopy++;
+  strPtrColorCopy++;
+  strPtrYearCopy++;
+  strPtrMileageCopy++;
+  strPtrVinCopy++;
+   }
+   }
+  
+ 

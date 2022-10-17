@@ -1,0 +1,293 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+
+
+
+public:
+// Member functions definitions including constructor
+
+Car(string ma,string mo,string co,int ye,int Mi,int VN) 
+{ 
+    make=ma;
+    model=mo;
+    color=co;
+    year=ye;
+    Mileage=Mi;
+    VIN=VN;
+     
+    
+}
+//Getters Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }
+        
+        
+    }
+
+     string getColor() {
+        return color;
+        
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+};
+
+
+int binarySearch(Car arraylist[],int numElm, int value)
+  {
+    int first = 0,
+    last = numElm - 1,
+    middle,
+    position = -1;
+    bool found = false;
+    
+
+    while(!found && first <= last)
+    {
+      middle = (first + last) / 2;
+      if(arraylist[middle].getVin() == value)
+      {
+        found = true;
+        position = middle;
+      }
+      else if(arraylist[middle].getVin() > value)
+      last = middle - 1;
+      else
+        first = middle + 1;
+    }
+    return position;
+  }
+
+
+
+
+
+
+ //linearSearch Algo
+ int linearSearch(Car carlist[9],  int value);//Prototype
+ int linearSearch(Car carlist[9],  int value) {
+   int index = 0; // start of index value 0
+   int position = -1;
+   bool found = false;
+
+   while(index < 9 && !found){
+     if(carlist[index].getVin() == value){
+         found = true;
+         position = index;
+     }
+     index++;
+    }
+        return position;
+    }
+
+
+
+
+// Sort AlgoMileage
+void selectionSort(Car carlist[9]);//Prototype
+void selectionSort(Car carlist[9], int size)
+{
+  int minIndex, minValue;
+  for (int start = 0; start < (size - 1) ; start++)
+ {
+    minIndex = start;
+    minValue = carlist[start].getMileage();
+     for (int index = start + 1; index < size;index++)
+     {
+       if (carlist[index].getMileage() < minValue)
+	{
+         minValue = carlist[index].getMileage();
+         minIndex = index;
+       }
+
+}
+	
+  swap(carlist[minIndex],carlist[start]);
+  }
+}
+
+
+
+
+
+
+// Sort AlgoVin
+void selectionSortV(Car carlist[9]);//Prototype
+void selectionSortV(Car carlist[9], int size)
+{
+  int minIndex, minValue;
+  for (int start = 0; start < (size - 1) ; start++)
+ {
+    minIndex = start;
+    minValue = carlist[start].getVin();
+     for (int index = start + 1; index < size;index++)
+     {
+       if (carlist[index].getVin() < minValue)
+	{
+         minValue = carlist[index].getVin();
+         minIndex = index;
+       }
+
+}
+	
+  swap(carlist[minIndex],carlist[start]);
+  }
+}
+
+
+
+
+
+void swap(Car &A, Car &B);
+void swap(Car &A, Car &B){
+  Car Temp = A;
+  A=B;
+  B=Temp;
+}
+
+
+
+
+
+
+
+
+
+int main() {
+const int size = 9;
+Car car1("Porsche","911","Silver",2005,18990,1237362);
+Car car2("Ford","Mustang","Red",2007,49842,7337372);
+Car car3("Chevrolet","Beretta","Black",1989,90332,2873644);
+Car car4("Ford","Focus","White",2008,150,9236498);
+Car car5("Voltzwagon","Jetta","Black",2006,28002,4673992);
+Car car6("Rolls Royce","Ghost","Silver",2005,10000,9292983);
+Car car7("Mazda","626","Blue",2002,84754,7364646);
+Car car8("Toyota","Camry","Red",2004,50332,2133737);
+Car car9("Honda","civic","Silver",2006,190,3337362);
+
+
+Car carslist[] = {car1,car2,car3,car4,car5,car6,car7,car8,car9};
+
+
+
+//Initial input data
+int input = 2873644;
+int result = linearSearch(carslist,input);// Search Array
+
+if(result == -1){
+  cout<< "Did not find Car on the lot with VIN number "<<input<<"!"<<endl;
+}else{
+  cout<<"Did Find Car with VIN number "<<input<<" on lot!"<<endl;
+}
+
+cout<<endl;
+cout << "Enter a New Vin number?: ";// New Vin info
+cin>>input ; // Get user input from the keyboard
+cin.ignore();
+result = linearSearch(carslist,input);// Search Array
+
+if(result == -1){
+  cout<< "Did not find Car on the lot! "<<input<<endl;
+}else{
+ cout<<"Did Find Car with vin number "<<input<<" on lot!"<<endl;
+}
+
+cout<<endl;
+cout<<"Not Sorted!"<<endl;
+for (int i = 0; i < 9; i++) {
+cout<<i+1<<". "<<carslist[i].getMake()<<"  "<<carslist[i].getModel()<<"  "<<carslist[i].getColor()<<"  "<<carslist[i].getYear()<<"  "<<carslist[i].getMileage()<<"  "<<carslist[i].getVin()<<"  "<<endl;
+}
+
+selectionSort(carslist, size);
+
+cout<<endl;
+cout<<"Sorted By Mileage!"<<endl;
+for (int i = 0; i < 9; i++) {
+cout<<i+1<<". "<<carslist[i].getMake()<<"  "<<carslist[i].getModel()<<"  "<<carslist[i].getColor()<<"  "<<carslist[i].getYear()<<"  "<<carslist[i].getMileage()<<"  "<<carslist[i].getVin()<<"  "<<endl;
+}
+
+
+selectionSortV(carslist,size);
+int input2 = 7337372;
+int result2 = binarySearch(carslist,size, input2);
+
+
+
+cout<<endl;
+cout<<"Car Info Requested!"<<endl;
+cout<<"The model is "<<carslist[result2].getModel()<<" The mileage is "<<carslist[result2].getMileage()<<endl;
+
+cout<<endl;
+cout<<"Sorted By Vin!"<<endl;
+for (int i = 0; i < 9; i++) {
+cout<<i+1<<". "<<carslist[i].getMake()<<"  "<<carslist[i].getModel()<<"  "<<carslist[i].getColor()<<"  "<<carslist[i].getYear()<<"  "<<carslist[i].getMileage()<<"  "<<carslist[i].getVin()<<"  "<<endl;
+}
+}

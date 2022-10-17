@@ -1,0 +1,213 @@
+#include <iostream>
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+
+class Bill{
+  
+protected:
+        string customerName;
+        int customerNumber;
+        
+public:
+// Member functions definitions including constructor
+Bill(){}
+Bill(string i,int x){
+      customerName=i;
+      customerNumber=x; 
+}
+//Getters and Setters
+    int getCustomerNumber() {
+        return customerNumber;
+    }
+
+    void setCustomerNumber(int a) {
+        customerNumber = a;
+        
+    }
+
+     string getCustomerName() {
+        return customerName;
+    }
+
+     void setCustomerName(int b) {
+        customerNumber = b;
+        
+    }
+}; 
+
+
+//CarPurchaseBill Class
+class CarPurchaseBill : public Bill{
+  
+private:
+        int VIN;
+        string model;
+        string color;
+        int year;
+        double price;       
+public:
+// Member functions definitions including constructor
+CarPurchaseBill():Bill(){}
+CarPurchaseBill(string i,int x,int  va,string mo,string co,int ye, double pr) :
+Bill(i,x)
+{ 
+    VIN=va;
+    model=mo;
+    color=co;
+    year=ye;
+    price=pr;
+}
+
+//Getters and Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+     double getPrice() {
+        return price;
+    }
+
+    void setPrice(int a) {
+        price = a;
+        
+    }
+
+     string getColor() {
+        return color;
+    }
+
+     void setColor(int b) {
+        color = b;
+        
+    }
+}; 
+
+// CarRepairBill Class
+class CarRepairBill : public Bill{
+  
+private:
+        int VIN;
+        string model;
+        string color;
+        int year;
+        double partCost;
+        double laborCost;      
+public:
+// Member functions definitions including constructor
+CarRepairBill ():Bill(){}
+CarRepairBill (string i,int x,int  va,string mo,string co,int ye, double pc,double lc) :
+Bill(i,x)
+{ 
+    VIN=va;
+    model=mo;
+    color=co;
+    year=ye;
+    partCost=pc;
+    laborCost=lc;
+}
+
+//Getters and Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+     double getPartCost() {
+        return partCost;
+    }
+
+    void setPartCost(int a) {
+        partCost = a;
+        
+    }
+
+     double getLaborCost() {
+        return laborCost;
+    }
+
+    void setLaborCost(int a) {
+        laborCost = a;
+        
+    }
+
+     string getColor() {
+        return color;
+    }
+
+     void setColor(int b) {
+        color = b;
+        
+    }
+}; 
+
+
+
+int main() {
+CarRepairBill car1("Craig",75,123456,"F-150","Red",1980, 300,100);
+CarPurchaseBill car2("David",76,654321,"Stingray","Black",1990, 200);
+
+cout<<"Car 1! Vin:"<<car1.getVin()<<" Model: "<<car1.getModel()<<" Color: "<<car1.getColor()<<"Year: "<<car1.getYear()
+<<" Part Cost: "<<car1.getPartCost()<<" Labor Cost: "<<car1.getLaborCost()<<" Customer Name: "<<car1.getCustomerName()<<" Customer Number: "<<car1.getCustomerNumber()<<endl;
+
+
+
+cout<<endl;
+cout<<"Car 2! Vin: "<<car2.getVin()<<" Model: "<<car2.getModel()<<" Color: "<<car2.getColor()<<"Year: "<<car2.getYear()
+<<" Price: "<<car2.getPrice()<<" Customer Name: "<<car2.getCustomerName()<<" Customer Number: "<<car2.getCustomerNumber()<<endl;
+
+
+return 0;
+}

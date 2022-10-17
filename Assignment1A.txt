@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+//Pogram 1 Gene Newell
+int main() {
+  string Name, description;
+  int quantity;
+  float price, taxrate,total,discount=.9;
+ 
+  cout << "Type a Name: "; // Type a name and press enter
+  getline(cin, Name); // Get user input from the keyboard
+
+  cout << "Type a description: "; // Type a description and press enter
+  getline(cin,description) ; // Get user input from the keyboard
+
+  cout << "Type a quantity: "; // Type a quantity and press enter
+  cin >> quantity ; // Get user input from the keyboard
+
+  cout << "Type a price: "; // Type a price and press enter
+  cin >> price ; // Get user input from the keyboard
+
+  cout << "Type a taxrate: "; // Type a taxrate and press enter
+  cin >> taxrate ; // Get user input from the keyboard
+
+
+   if (quantity > 10) {
+  total = (quantity * (price* discount) * (1 + taxrate));
+  }else {
+  total = quantity * price * (1 + taxrate);
+ }
+
+
+
+  cout << "Name: "<<Name<<" Description: "<< description<< " Total: "<< total;
+  return 0;
+}
+

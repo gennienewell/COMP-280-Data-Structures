@@ -1,0 +1,39 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+  string Name;  
+  float input=0, quantities,total,acctValue,intrest=1.03;
+
+
+ //First Loop
+  while (input != -1) {
+  cout << "Type a Number? Type -1 to Exit!: "; // Type a number
+  cin >> input ; // Get user input from the keyboard
+   if (input!= -1) {
+  total += input;
+  }
+  }
+  cout << "Total of all Input Numbers: "<<(total++)<<endl;
+ 
+
+
+
+
+  //Second Loop
+  cout << "Type in Starting Bank Account value: ";
+  cin >> acctValue ; // Get user input from the keyboard
+  for (int i = 1; i < 11; i++) {
+  cout << fixed;
+  cout << " Year"<<i<<  ".Balance: "<< setprecision(2) <<acctValue << endl;
+  acctValue *= intrest;
+  }   
+  return 0;
+}
+
+
+
+
+
+

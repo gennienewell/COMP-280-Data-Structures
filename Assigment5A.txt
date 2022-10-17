@@ -1,0 +1,159 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+class Car
+{
+  
+private:
+        string make;
+        string model;
+        string color;
+        int year;
+        int Mileage;
+        int VIN ;
+        double ShipmentPrice;
+public:
+// Member functions definitions including constructor
+Car(){}
+Car(string ma,string mo,string co,int ye,int Mi,int VN, double shp) 
+{ 
+    make=ma;
+    model=mo;
+    color=co;
+    year=ye;
+    Mileage=Mi;
+    VIN=VN;
+    ShipmentPrice=shp;  
+}
+//Getters and Setters
+    int getVin() {
+        return VIN;
+    }
+
+    void setVin(int i) {
+        VIN = i;
+        
+    }
+
+     string getMake() {
+        return make;
+    }
+
+    void setMake(string x) {
+      int size = x.length();
+       if (size > 3)
+          make = x;
+        else
+        {cout<<"Invalid Make\n";
+        }
+       
+    }
+
+    string getModel() {
+        return model;
+    }
+
+    void setModel(string a) {
+        model = a;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int y) {
+      if (y > 1970)
+        year = y;
+        else
+        {cout<<"Invalid Year\n";
+        }
+    }
+
+     int getMileage() {
+        return Mileage;
+    }
+
+     void setMileage(int m) {
+       if (m > 0)
+         Mileage = m;
+        else
+        {cout<<"Invalid Mileage\n";
+        }     
+    }
+
+     string getColor() {
+        return color;    
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+double getShipmentPrice() {
+        return ShipmentPrice;    
+    }
+
+    void setShipmentPrice(double p) {
+        ShipmentPrice = p;
+    }
+
+Car operator+(Car c){
+  Car newCar;
+  newCar = *this;
+  newCar.ShipmentPrice = ShipmentPrice + c.ShipmentPrice;
+  return (newCar);
+}
+
+Car operator-(Car b){
+  Car newCar;
+  newCar = *this;
+  newCar.ShipmentPrice = ShipmentPrice - b.ShipmentPrice;
+  return (newCar);
+}
+
+Car operator++(){
+ ShipmentPrice += 1000;
+ return *this;
+}
+
+Car operator--(){
+  ShipmentPrice -= 1000;
+ return *this;
+}
+};
+
+
+// Main function for the program
+int main() {
+//Two Car Objects
+Car car1("Porsche","911","Silver",2005,18990,1237362,2000);
+Car car2("Ford","Mustang","Red",2007,49842,7337372,1000);
+
+// + Operator
+cout<<"Before Operator+ Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+car1 = car1 + car2;
+cout<<"After Operator+ Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+cout<<endl;
+
+// - Operator
+cout<<"Before Operator- Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+car1 = car1 - car2;
+cout<<"After  Operator- Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+cout<<endl;
+
+// ++ Operator
+cout<<"Before ++Operator Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+++car1;
+cout<<"After ++Operator Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+cout<<endl;
+
+// -- Operator
+cout<<"Before --Operator Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+--car1;
+cout<<"After --Operator Changes! "<<car1.getMake()<<" "<<car1.getShipmentPrice()<<endl;
+cout<<endl;
+return 0;
+}
